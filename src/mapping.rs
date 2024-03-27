@@ -89,7 +89,7 @@ impl Mapping {
     /// Removes and returns the value corresponding to the key from the map.
     #[inline]
     pub fn remove(&mut self, k: &Value) -> Option<Value> {
-        self.map.remove(k)
+        self.map.swap_remove(k)
     }
 
     /// Returns the maximum number of key-value pairs the map can hold without
