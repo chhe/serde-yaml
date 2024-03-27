@@ -21,6 +21,7 @@ fn test_incorrect_type() {
 }
 
 #[test]
+#[allow(dead_code)]
 fn test_incorrect_nested_type() {
     #[derive(Deserialize, Debug)]
     struct A {
@@ -109,6 +110,7 @@ fn test_two_documents() {
 }
 
 #[test]
+#[allow(dead_code)]
 fn test_variant_map_wrong_size() {
     #[derive(Deserialize, Debug)]
     enum E {
@@ -124,6 +126,7 @@ fn test_variant_map_wrong_size() {
 }
 
 #[test]
+#[allow(dead_code)]
 fn test_variant_not_a_map() {
     #[derive(Deserialize, Debug)]
     enum E {
@@ -138,6 +141,7 @@ fn test_variant_not_a_map() {
 }
 
 #[test]
+#[allow(dead_code)]
 fn test_variant_not_string() {
     #[derive(Deserialize, Debug)]
     enum E {

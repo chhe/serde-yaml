@@ -87,7 +87,7 @@
     clippy::redundant_else,
     clippy::single_match_else,
     // code is acceptable
-    clippy::blocks_in_if_conditions,
+    clippy::blocks_in_conditions,
     clippy::cast_possible_wrap,
     clippy::cast_precision_loss,
     clippy::derive_partial_eq_without_eq,
