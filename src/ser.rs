@@ -483,7 +483,7 @@ impl ser::Serializer for SerializerToYaml {
 
     #[allow(clippy::cast_possible_truncation)]
     fn serialize_i128(self, v: i128) -> Result<Yaml> {
-        if v <= i64::max_value() as i128 && v >= i64::min_value() as i128 {
+        if v <= i64::MAX as i128 && v >= i64::MIN as i128 {
             self.serialize_i64(v as i64)
         } else {
             Ok(Yaml::Real(v.to_string()))
@@ -503,7 +503,7 @@ impl ser::Serializer for SerializerToYaml {
     }
 
     fn serialize_u64(self, v: u64) -> Result<Yaml> {
-        if v <= i64::max_value() as u64 {
+        if v <= i64::MAX as u64 {
             self.serialize_i64(v as i64)
         } else {
             Ok(Yaml::Real(v.to_string()))
@@ -512,7 +512,7 @@ impl ser::Serializer for SerializerToYaml {
 
     #[allow(clippy::cast_possible_truncation)]
     fn serialize_u128(self, v: u128) -> Result<Yaml> {
-        if v <= i64::max_value() as u128 {
+        if v <= i64::MAX as u128 {
             self.serialize_i64(v as i64)
         } else {
             Ok(Yaml::Real(v.to_string()))
