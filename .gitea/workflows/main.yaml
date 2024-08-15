@@ -26,6 +26,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4.1.7
 
+      - name: cache rust toolchain
+        uses: actions/cache@v4.0.2
+        with:
+          path: |
+            ~/.cargo
+            ~/.rustup
+          key: ${{ runner.os }}-rust
+
       - name: install rust
         uses: dtolnay/rust-toolchain@master
         with:
@@ -61,6 +69,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4.1.7
 
+      - name: cache rust toolchain
+        uses: actions/cache@v4.0.2
+        with:
+          path: |
+            ~/.cargo
+            ~/.rustup
+          key: ${{ runner.os }}-rust
+
       - name: install latest rust
         uses: dtolnay/rust-toolchain@master
         with:
@@ -75,6 +91,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.7
+      - name: cache rust toolchain
+        uses: actions/cache@v4.0.2
+        with:
+          path: |
+            ~/.cargo
+            ~/.rustup
+          key: ${{ runner.os }}-rust
       - uses: dtolnay/rust-toolchain@miri
       - name: setup rust cache
         uses: Swatinem/rust-cache@v2.7.3
@@ -89,6 +112,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.7
+      - name: cache rust toolchain
+        uses: actions/cache@v4.0.2
+        with:
+          path: |
+            ~/.cargo
+            ~/.rustup
+          key: ${{ runner.os }}-rust
       - uses: dtolnay/rust-toolchain@nightly
       - name: setup rust cache
         uses: Swatinem/rust-cache@v2.7.3
