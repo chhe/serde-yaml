@@ -1,0 +1,103 @@
+name: main
+
+on:
+  push:
+    branches: [0.8.26-cont]
+  pull_request:
+    branches: [0.8.26-cont]
+
+env:
+  CARGO_TERM_COLOR: always
+  SCCACHE_GHA_ENABLED: true
+  RUSTC_WRAPPER: sccache
+
+jobs:
+  build-test-check-clippy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.1.7
+
+      - name: install rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          components: clippy
+
+      - name: setup rust cache
+        uses: Swatinem/rust-cache@v2.7.3
+        with:
+          cache-all-crates: "true"
+
+      - name: use sccache
+        uses: mozilla-actions/sccache-action@v0.0.5
+        with:
+          version: "v0.8.1"
+
+      - name: run cargo build main
+        run: cargo build --all --release
+
+      - name: run cargo test
+        run: cargo test
+
+      - name: run cargo check
+        run: cargo check
+
+      - name: run clippy
+        run: cargo clippy -- -D warnings
+
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.1.7
+
+      - name: install latest rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          components: rustfmt
+
+      - name: format check
+        run: cargo fmt -- --check
+
+  miri:
+    name: Miri
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.7
+      - uses: dtolnay/rust-toolchain@miri
+      - name: setup rust cache
+        uses: Swatinem/rust-cache@v2.7.3
+        with:
+          cache-all-crates: "true"
+      - run: cargo miri test
+        env:
+          MIRIFLAGS: -Zmiri-strict-provenance
+
+  fuzz:
+    name: Fuzz
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.7
+      - uses: dtolnay/rust-toolchain@nightly
+      - name: setup rust cache
+        uses: Swatinem/rust-cache@v2.7.3
+        with:
+          cache-all-crates: "true"
+      - uses: dtolnay/install@cargo-fuzz
+      - run: cargo fuzz build -O
+        env:
+          RUSTC_WRAPPER: ""
+
+  conventional-commits:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.7
+
+    - name: conventional commits
+      uses: webiny/action-conventional-commits@v1.3.0
