@@ -41,7 +41,7 @@ jobs:
           components: clippy
 
       - name: setup rust cache
-        uses: Swatinem/rust-cache@v2.7.3
+        uses: Swatinem/rust-cache@v2.7.5
         with:
           cache-all-crates: "true"
 
@@ -100,7 +100,7 @@ jobs:
           key: ${{ runner.os }}-rust
       - uses: dtolnay/rust-toolchain@miri
       - name: setup rust cache
-        uses: Swatinem/rust-cache@v2.7.3
+        uses: Swatinem/rust-cache@v2.7.5
         with:
           cache-all-crates: "true"
       - run: cargo miri test
@@ -121,7 +121,7 @@ jobs:
           key: ${{ runner.os }}-rust
       - uses: dtolnay/rust-toolchain@nightly
       - name: setup rust cache
-        uses: Swatinem/rust-cache@v2.7.3
+        uses: Swatinem/rust-cache@v2.7.5
         with:
           cache-all-crates: "true"
       - uses: dtolnay/install@cargo-fuzz
