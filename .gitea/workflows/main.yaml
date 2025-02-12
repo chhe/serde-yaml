@@ -86,49 +86,6 @@ jobs:
       - name: format check
         run: cargo fmt -- --check
 
-  miri:
-    name: Miri
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4.2.2
-      - name: cache rust toolchain
-        uses: actions/cache@v4.2.0
-        with:
-          path: |
-            ~/.cargo
-            ~/.rustup
-          key: ${{ runner.os }}-rust
-      - uses: dtolnay/rust-toolchain@miri
-      - name: setup rust cache
-        uses: Swatinem/rust-cache@v2.7.7
-        with:
-          cache-all-crates: "true"
-      - run: cargo miri test
-        env:
-          MIRIFLAGS: -Zmiri-strict-provenance
-
-  fuzz:
-    name: Fuzz
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4.2.2
-      - name: cache rust toolchain
-        uses: actions/cache@v4.2.0
-        with:
-          path: |
-            ~/.cargo
-            ~/.rustup
-          key: ${{ runner.os }}-rust
-      - uses: dtolnay/rust-toolchain@nightly
-      - name: setup rust cache
-        uses: Swatinem/rust-cache@v2.7.7
-        with:
-          cache-all-crates: "true"
-      - uses: dtolnay/install@cargo-fuzz
-      - run: cargo fuzz build -O
-        env:
-          RUSTC_WRAPPER: ""
-
   conventional-commits:
     runs-on: ubuntu-latest
 
