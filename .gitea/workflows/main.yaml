@@ -48,7 +48,7 @@ jobs:
       - name: use sccache
         uses: mozilla-actions/sccache-action@v0.0.7
         with:
-          version: "v0.9.1"
+          version: "${{ vars.SCCACHE_VERSION }}"
 
       - name: run cargo build main
         run: cargo build --all --release
