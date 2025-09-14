@@ -13,15 +13,15 @@ keywords = ["yaml", "serde"]
 categories = ["encoding"]
 
 [dependencies]
-ryu = "1.0.17"
-indexmap = { version = "2.2.6", features = ["std"] }
-serde = "1.0.200"
-yaml-rust = "0.4.5"
+ryu = "=1.0.20"
+indexmap = { version = "=2.11.1", features = ["std"] }
+serde = "=1.0.221"
+yaml-rust = "=0.4.5"
 
 [dev-dependencies]
-anyhow = "1.0.82"
-indoc = "2.0.5"
-serde_derive = "1.0.200"
+anyhow = "=1.0.99"
+indoc = "=2.0.6"
+serde_derive = "=1.0.221"
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
