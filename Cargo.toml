@@ -15,13 +15,13 @@ categories = ["encoding"]
 [dependencies]
 ryu = "=1.0.20"
 indexmap = { version = "=2.11.2", features = ["std"] }
-serde = "=1.0.224"
+serde = "=1.0.225"
 yaml-rust = "=0.4.5"
 
 [dev-dependencies]
 anyhow = "=1.0.99"
 indoc = "=2.0.6"
-serde_derive = "=1.0.224"
+serde_derive = "=1.0.225"
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
