@@ -41,7 +41,7 @@ jobs:
           components: clippy
 
       - name: setup rust cache
-        uses: Swatinem/rust-cache@v2.8.0
+        uses: Swatinem/rust-cache@v2.8.1
         with:
           cache-all-crates: "true"
 
