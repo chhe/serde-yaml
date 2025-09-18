@@ -14,7 +14,7 @@ categories = ["encoding"]
 
 [dependencies]
 ryu = "=1.0.20"
-indexmap = { version = "=2.11.3", features = ["std"] }
+indexmap = { version = "=2.11.4", features = ["std"] }
 serde = "=1.0.225"
 yaml-rust = "=0.4.5"
 
