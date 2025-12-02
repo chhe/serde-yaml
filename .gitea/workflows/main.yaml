@@ -24,10 +24,10 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v6.0.0
+        uses: actions/checkout@v6
 
       - name: cache rust toolchain
-        uses: actions/cache@v4.3.0
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cargo
@@ -41,7 +41,7 @@ jobs:
           components: clippy
 
       - name: setup rust cache
-        uses: Swatinem/rust-cache@v2.8.2
+        uses: Swatinem/rust-cache@v2
         with:
           cache-all-crates: "true"
 
@@ -67,10 +67,10 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v6.0.0
+        uses: actions/checkout@v6
 
       - name: cache rust toolchain
-        uses: actions/cache@v4.3.0
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cargo
@@ -91,7 +91,7 @@ jobs:
 
     steps:
     - name: checkout
-      uses: actions/checkout@v6.0.0
+      uses: actions/checkout@v6
 
     - name: conventional commits
       uses: webiny/action-conventional-commits@v1.3.0
