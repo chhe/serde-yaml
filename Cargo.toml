@@ -13,7 +13,7 @@ keywords = ["yaml", "serde"]
 categories = ["encoding"]
 
 [dependencies]
-ryu = "=1.0.22"
+ryu = "=1.0.23"
 indexmap = { version = "=2.13.0", features = ["std"] }
 serde = "=1.0.228"
 yaml-rust = "=0.4.5"
