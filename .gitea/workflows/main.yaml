@@ -26,24 +26,13 @@ jobs:
       - name: checkout
         uses: actions/checkout@v7
 
-      - name: cache rust toolchain
-        uses: actions/cache@v6
-        with:
-          path: |
-            ~/.cargo
-            ~/.rustup
-          key: ${{ runner.os }}-rust
-
       - name: install rust
-        uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # master
+        uses: actions-rust-lang/setup-rust-toolchain@a188e68d0fd2bd36ad51dccb2b07ba6e75105f30 # v2.0.1
         with:
           toolchain: stable
           components: clippy
-
-      - name: setup rust cache
-        uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
-        with:
           cache-all-crates: "true"
+          build-warnings: warn
 
       - name: use sccache
         uses: mozilla-actions/sccache-action@fc920bf0ec8de6ee65d409111f7ec508035751ba # v0.0.11
@@ -69,19 +58,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v7
 
-      - name: cache rust toolchain
-        uses: actions/cache@v6
-        with:
-          path: |
-            ~/.cargo
-            ~/.rustup
-          key: ${{ runner.os }}-rust
-
       - name: install latest rust
-        uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # master
+        uses: actions-rust-lang/setup-rust-toolchain@a188e68d0fd2bd36ad51dccb2b07ba6e75105f30 # v2.0.1
         with:
           toolchain: stable
           components: rustfmt
+          build-warnings: warn
 
       - name: format check
         run: cargo fmt -- --check
